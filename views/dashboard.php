@@ -594,9 +594,9 @@ $(".click_show").click(function(event) {
 
     $(document).on('click', '.pdfButton', function(e) {
         // your function here
-        e.preventDefault();
+        // e.preventDefault();
         var id = $(this).val();
-        var win = window.open('./bang.php?id=' + id, '_blank');
+        window.open('./bang.php?id=' + id);
         if (win) {
             //Browser has allowed it to be opened
             win.focus();

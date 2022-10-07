@@ -592,5 +592,18 @@ $(".click_show").click(function(event) {
         ]
     }).columns.adjust();
 
+    $(document).on('click', '.pdfButton', function(e) {
+        // your function here
+        e.preventDefault();
+        var id = $(this).val();
+        var win = window.open('./bang.php?id=' + id, '_blank');
+        if (win) {
+            //Browser has allowed it to be opened
+            win.focus();
+        } else {
+            //Browser has blocked it
+            alert('Please allow popups for this website');
+        }
+    });
 });
 </script>

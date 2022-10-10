@@ -596,7 +596,7 @@ $(".click_show").click(function(event) {
         // your function here
         // e.preventDefault();
         var id = $(this).val();
-        window.open('./bang.php?id=' + id);
+        window.open('../genpdf-pmac/singlephase.php?id=' + id);
         if (win) {
             //Browser has allowed it to be opened
             win.focus();

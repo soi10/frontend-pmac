@@ -559,6 +559,8 @@ $(".click_show").click(function(event) {
                             // code block
                             return '<h3><span class="badge badge-danger">FAST</span></h3>'
                             break;
+                        default:
+                            return '<h3><span class="badge badge-danger">Unknown</span></h3>'
                     }
                 },
                 "className": "text-center",
@@ -591,6 +593,7 @@ $(".click_show").click(function(event) {
             },
         ]
     }).columns.adjust();
+
 
     $(document).on('click', '.pdfButton', function(e) {
         // your function here

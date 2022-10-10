@@ -584,7 +584,7 @@ $(".click_show").click(function(event) {
             {
                 "data": null,
                 'render': function(data) {
-                    return '<button id="' + data.id +
+                    return '<button id="' + data.apptype +
                         '" class="pdfButton btn btn-danger" value="' +
                         data.id +
                         '"><i class="fa fa-file"> PDF </i></button>'
@@ -598,14 +598,75 @@ $(".click_show").click(function(event) {
     $(document).on('click', '.pdfButton', function(e) {
         // your function here
         // e.preventDefault();
-        var id = $(this).val();
-        window.open('../genpdf-pmac/singlephase.php?id=' + id);
-        if (win) {
-            //Browser has allowed it to be opened
-            win.focus();
-        } else {
-            //Browser has blocked it
-            alert('Please allow popups for this website');
+        var btval = $(this).val();
+        var btid = $(this).attr('id');
+
+        switch (btid) {
+            case "1":
+                window.open('../genpdf-pmac/singlephase.php?id=' + btval);
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
+                break;
+            case "2":
+                // code block
+                window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
+                break;
+            case "3":
+                // code block
+                window.open('../genpdf-pmac/singlephase.php?id=' + btval);
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
+                break;
+            case "4":
+                // code block
+                window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
+                break;
+            case "5":
+                // code block
+                window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
+                break;
+            case "6":
+                // code block
+                window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
+                break;
         }
     });
 });

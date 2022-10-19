@@ -380,18 +380,19 @@ $(document).ready(function() {
         '<option value="Select" selected="true">Select</option>'
     );
     dropdownPea.prop("selectedIndex", 0);
-    const urlPea = "http://103.13.231.66:3001/appMapping/countpeaname";
+
+    const urlPea = "http://103.13.231.66:3001/peatomruname/getname";
 
     $.getJSON(urlPea, function(data) {
         $.each(data, function(key, entry) {
 
-            if (!entry._id.mruname) {
+            if (!entry.mruname || !entry.peaname) {
 
             } else {
                 dropdownPea.append(
                     $("<option></option>")
-                    .attr("value", entry._id.mruname)
-                    .text(entry._id.Peaname)
+                    .attr("value", entry.mruname)
+                    .text(entry.peaname)
                 );
             }
         });
@@ -709,14 +710,17 @@ $(document).ready(function() {
 
     }, 2000);
 
-    $('#selectPea').on('change', function() {
 
-        var selectPea = $(this).val();
+})
+</script>
+<script>
+$('#selectPea').on('change', function() {
 
-        $('#chart1').hide();
-        $('#chart2').show();
+    var selectPea = $(this).val();
 
-        $('myPieChartMeterError1').hide();
+    $('#chart1').hide();
+    $('#chart2').show();
+
 
         $.ajax({
             type: "POST",
@@ -823,61 +827,168 @@ $(document).ready(function() {
             }
         });
 
+    $('myPieChartMeterError1').hide();
 
-        setTimeout(function() {
-
-
-            var Error1 = $("#countErr1").text();
-            var Error2 = $("#countErr2").text();
-            var Error3 = $("#countErr3").text();
-            var Error4 = $("#countErr4").text();
-            var Error5 = $("#countErr5").text();
-
-            // Set new default font family and font color to mimic Bootstrap's default styling
-            (Chart.defaults.global.defaultFontFamily = "Nunito"),
-            '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-            Chart.defaults.global.defaultFontColor = "#858796";
-
-            // Pie Chart Example
-            var ctx = document.getElementById("myPieChartMeterError2");
-            var myPieChart = new Chart(ctx, {
-                type: "doughnut",
-                data: {
-                    labels: ["1P2W (DIRECT)", "3P4W (DIRECT)", "1P2W WITH CT",
-                        "SMART METER 3P4W WITH CT",
-                        "CT TEST"
-                    ],
-                    datasets: [{
-                        data: [Error1, Error2, Error3, Error4, Error5],
-                        backgroundColor: ["#4e73df", "#858796", "#1cc88a",
-                            "#e74a3b", "#f6c23e"
-                        ],
-                        hoverBackgroundColor: ["#4e73df", "#858796", "#1cc88a",
-                            "#e74a3b",
-                            "#f6c23e"
-                        ],
-                        hoverBorderColor: "rgba(234, 236, 244, 1)",
-                    }, ],
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    tooltips: {
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyFontColor: "#858796",
-                        borderColor: "#dddfeb",
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        caretPadding: 10,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                    cutoutPercentage: 80,
-                },
-            });
-        }, 2000);
+    $.ajax({
+        type: "POST",
+        url: "http://103.13.231.66:3001/appMapping/count",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            $('#count1').text(result[0].A);
+            $('#count2').text(result[0].B);
+            $('#count3').text(result[0].C);
+            $('#count4').text(result[0].D);
+            $('#count5').text(result[0].E);
+            $('#count6').text(result[0].F);
+            $('#count7').text(result[0].G);
+        }
     });
-})
+
+    $.ajax({
+        type: "POST",
+        url: "http://103.13.231.66:3001/appMapping/countmetererror1",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result1) {
+            var Err1 = result1[0].A + result1[0].C
+            $('#countErr1').text(Err1);
+            var ErrPer1 = result1[0].A + result1[0].B + result1[0].C
+            var ErrAws2 = ((Err1 / ErrPer1) * 100) || 0;
+            $('#countPreErr1').text(parseFloat(ErrAws2).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://103.13.231.66:3001/appMapping/countmetererror2",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result2) {
+            // console.log(result2);
+            var Err2 = result2[0].A + result2[0].C
+            $('#countErr2').text(Err2);
+            var ErrPer2 = result2[0].A + result2[0].B + result2[0].C
+            var ErrAws2 = ((Err2 / ErrPer2) * 100) || 0;
+            $('#countPreErr2').text(parseFloat(ErrAws2).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://103.13.231.66:3001/appMapping/countmetererror3",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            var Err3 = result[0].A + result[0].C
+            $('#countErr3').text(Err3);
+            var ErrPer3 = result[0].A + result[0].B + result[0].C
+            var ErrAws3 = ((Err3 / ErrPer3) * 100) || 0;
+            $('#countPreErr3').text(parseFloat(ErrAws3).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://103.13.231.66:3001/appMapping/countmetererror4",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            var Err4 = result[0].A + result[0].C
+            $('#countErr4').text(Err4);
+            var ErrPer4 = result[0].A + result[0].B + result[0].C
+            var ErrAws4 = ((Err4 / ErrPer4) * 100) || 0;
+            $('#countPreErr4').text(parseFloat(ErrAws4).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://103.13.231.66:3001/appMapping/countmetererror5",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            var Err5 = result[0].A + result[0].C
+            $('#countErr5').text(Err5);
+            var ErrPer5 = result[0].A + result[0].B + result[0].C
+            var ErrAws5 = ((Err5 / ErrPer5) * 100) || 0;
+            $('#countPreErr5').text(parseFloat(ErrAws5).toFixed(2));
+        }
+    });
+
+
+
+    setTimeout(function() {
+
+
+        var Error1 = $("#countErr1").text();
+        var Error2 = $("#countErr2").text();
+        var Error3 = $("#countErr3").text();
+        var Error4 = $("#countErr4").text();
+        var Error5 = $("#countErr5").text();
+
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        (Chart.defaults.global.defaultFontFamily = "Nunito"),
+        '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = "#858796";
+
+        // Pie Chart Example
+        var ctx = document.getElementById("myPieChartMeterError2");
+        var myPieChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["1P2W (DIRECT)", "3P4W (DIRECT)", "1P2W WITH CT",
+                    "SMART METER 3P4W WITH CT",
+                    "CT TEST"
+                ],
+                datasets: [{
+                    data: [Error1, Error2, Error3, Error4, Error5],
+                    backgroundColor: ["#4e73df", "#858796", "#1cc88a",
+                        "#e74a3b", "#f6c23e"
+                    ],
+                    hoverBackgroundColor: ["#4e73df", "#858796", "#1cc88a",
+                        "#e74a3b",
+                        "#f6c23e"
+                    ],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }, ],
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: "#dddfeb",
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: false,
+                },
+                cutoutPercentage: 80,
+            },
+        });
+    }, 2000);
+});
 </script>

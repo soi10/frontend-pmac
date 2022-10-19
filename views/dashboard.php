@@ -321,6 +321,7 @@ include "topbarlogout.php"
                                             <th class="text-center">CA</th>
                                             <th class="text-center">PEA NO.</th>
                                             <th class="text-center">NAME</th>
+                                            <th class="text-center">PER_ERR</th>
                                             <th class="text-center">RESULT_MT</th>
                                             <th class="text-center">Date</th>
                                             <th class="text-center">Action</th>
@@ -544,6 +545,10 @@ $(".click_show").click(function(event) {
                 "className": "text-center",
             },
             {
+                "data": "ERR_MT_A",
+                "className": "text-center",
+            },
+            {
                 "data": "RESULT_MT",
                 "data": null,
                 "render": function(data) {
@@ -573,7 +578,7 @@ $(".click_show").click(function(event) {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',
-                            weekday: 'long',
+                            // weekday: 'long',
                         });
 
                     return time_s;

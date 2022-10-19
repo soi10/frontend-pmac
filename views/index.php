@@ -29,12 +29,12 @@ include "head.php"
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="username"
                                                 aria-describedby="emailHelp" placeholder="รหัสพนักงาน" name="username"
-                                                value="506341">
+                                                value="">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" id="password"
                                                 placeholder="รหัสผ่านเข้าเครื่องคอมพิวเตอร์" name="password"
-                                                value="Pea@2022/4++">
+                                                value="">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login

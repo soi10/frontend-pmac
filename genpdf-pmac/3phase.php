@@ -15,6 +15,51 @@ $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp',
             ]
         ],
 ]);
+$id = $_GET['id'];
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'http://103.13.231.66:3001/appMapping/dataid?id='.$id.'',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_POSTFIELDS => '_id='.$id.'',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/x-www-form-urlencoded'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+$pdf_data = json_decode($response, true);
+
+function DateThai($strDate)
+	{
+		$strYear = date("Y",strtotime($strDate))+543;
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+		$strHour= date("H",strtotime($strDate));
+		$strMinute= date("i",strtotime($strDate));
+		$strSeconds= date("s",strtotime($strDate));
+		$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strDay $strMonthThai $strYear, $strHour:$strMinute";
+	}
+  date_default_timezone_set('Asia/Bangkok');
+  $date_time = date( "Y-m-d H:i:s", strtotime($pdf_data["createdAt"]) );
+  $date_result = substr(DateThai($date_time),0,16);
+  $time_result = substr(DateThai($date_time),17,20);
+
+  if($pdf_data["sign_1"]==0){
+    $sign_cus = "ผู้ใช้ไฟไม่อยู่ขณะตรวจสอบ";
+  }else{
+    $sign_cus = $pdf_data["name"];
+  }
 
 //ob_start(); // Start get HTML code
 $head = '
@@ -86,8 +131,8 @@ $head = '
 </tbody>
 </table>
 <p class="left">๑. ข้อมูล</p>
-<p style="text-align: left;">ข้อมูลผู้ใช้ไฟ&nbsp; _______________________ หมายเลขผู้ใช้ _________________ การไฟฟ้า _________</p>
-<p style="text-align: left;">KWh-Meter ผลิตภัณฑ์ ___________ รุ่น ________ กระแส __________ แอมป์ แรงดัน _______ โวลท์</p>
+<p style="text-align: left;">ข้อมูลผู้ใช้ไฟ&nbsp; <u class="dotted">'.$pdf_data["name"].'</u> หมายเลขผู้ใช้ <u class="dotted">'.$pdf_data["ca"].'</u> การไฟฟ้า <u class="dotted">'.$pdf_data["Peaname"].'</u></p>
+<p style="text-align: left;">KWh-Meter ผลิตภัณฑ์ <u class="dotted">'.$pdf_data["producer"].'</u> รุ่น <u class="dotted">'.$pdf_data["phase"].'</u> กระแส <u class="dotted">'.$pdf_data["amp"].'</u> แอมป์ แรงดัน _______ โวลท์</p>
 <p style="text-align: left;">Pulse _______ รอบ/กิโลวัตต์-ชั่วโมง PEA no. _______ Serial no. _____ ประเภทธุรกิจปัจจุบัน _______</p>
 <p style="text-align: left;">ขนาดหม้อแปลงหม้อแปลงระบบจำหน่าย __ KVA ระยะห่างระหว่างมิเตอร์กับหม้อแปลงระบบจำหน่ายประมาณ __ เมตร</p>
 <p style="text-align: left;">ตราตะกั่วตู้มิเตอร์&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;หมายเลข _________ (.......) ปกติ&nbsp; (.....) ไม่ปกติ&nbsp; (.....)&nbsp; ไม่มี</p>
@@ -241,7 +286,7 @@ $head = '
 </tr>
 <tr style="height: 198px;">
 <td style="width: 100%; height: 106px;">
-<p>วันที่&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;เวลา&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; น. ในตัวเตอร์ วันที่&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;เวลา&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; น. ปัจจุบันขณะตรวจสอบ คลาดเคลื่อน&nbsp; &nbsp; &nbsp;นาที</p>
+<p>วันที่&nbsp; <u class="dotted">'.$date_result.'</u> &nbsp;เวลา&nbsp; <u class="dotted">'.$time_result.'</u> น. ในตัวเตอร์ วันที่&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;เวลา&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; น. ปัจจุบันขณะตรวจสอบ คลาดเคลื่อน&nbsp; &nbsp; &nbsp;นาที</p>
 <p>หลังการตรวจสอบได้ตีตราตระกั๋ว หมายเลข&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ที่ ฝาครอบ,ที่ต่อสาย และ ตู้มิเตอร์</p>
 <p>สรุปผลการตรวจสอบ % error =&nbsp; &nbsp; &nbsp; &Omicron; ปกติ&nbsp; &Omicron;&nbsp; ไม่ปกติ__________________</p>
 <p>_______________________________________________________________________</p>
@@ -254,7 +299,8 @@ $head = '
 </td>
 <td style="width: 50%; text-align: center;">
 <p>ลงชื่อ........................... ผู้ตรวจสอบ</p>
-<p>(....................................)</p>
+<p>( '.$pdf_data["full_name"].' </u> )  </p>
+<p>'.$pdf_data["DepartmentShortName"].''.$pdf_data["Peaname"].' </p>
 </td>
 </tr>
 </tbody>
@@ -269,4 +315,8 @@ $head = '
 
 ';
 $mpdf->WriteHTML($head);
+$mpdf->SetTitle('แบบฟอร์มการตรวจสอบมิเตอร์ ชนิด 3 เฟส');
+$mpdf->SetWatermarkText('PMAC');
+$mpdf->showWatermarkText = true;
+$mpdf->Output('singlephase.pdf', 'I');
 $mpdf->Output();

@@ -380,7 +380,7 @@ $(document).ready(function() {
         '<option value="Select" selected="true">Select</option>'
     );
     dropdownPea.prop("selectedIndex", 0);
-    const urlPea = "http://localhost:3001/peatomruname/getname";
+    const urlPea = "http://103.13.231.66:3001/peatomruname/getname";
 
     $.getJSON(urlPea, function(data) {
         $.each(data, function(key, entry) {

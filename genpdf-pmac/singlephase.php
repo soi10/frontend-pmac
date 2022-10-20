@@ -59,8 +59,10 @@ function DateThai($strDate)
 
   if($pdf_data["sign_1"]==0){
     $sign_cus = "ผู้ใช้ไฟไม่อยู่ขณะตรวจสอบ";
+    $img_sign = '<img src="http://103.13.231.66:3001/uploads/nosign.png" alt="Mountain" width="50" height="40">';
   }else{
     $sign_cus = $pdf_data["name"];
+    $img_sign = '<img src="http://103.13.231.66:3001/uploads/'.$pdf_data["sign_1"].'" alt="Mountain" width="50" height="40">';
   }
 
 //ob_start(); // Start get HTML code
@@ -207,7 +209,7 @@ u.dotted {
 </tr>
 <tr>
 <td style="width: 50%; text-align: center;">
-<p>ลงชื่อ <img src="http://103.13.231.66:3001/uploads/'.$pdf_data["sign_1"].'" alt="Mountain" width="50" height="40"> ผู้ใช้ไฟฟ้า</p>
+<p>ลงชื่อ '.$img_sign.' ผู้ใช้ไฟฟ้า</p>
 <td style="width: 50%; text-align: center;">
 <p>&nbsp;</p>
 <p>ลงชื่อ ................................ ผู้ตรวจสอบ</p>

@@ -202,14 +202,24 @@ u.dotted {
 <table style="border-collapse: collapse; width: 100%;" border="0">
 <tbody>
 <tr>
+<td style="width: 50%; text-align: center;"></td>
+<td style="width: 50%; text-align: center;"></td>
+</tr>
+<tr>
 <td style="width: 50%; text-align: center;">
-<p>ลงชื่อ................................... ผู้ใช้ไฟฟ้า</p>
-<p>( '.$sign_cus.' </u> )</p>
+<p>ลงชื่อ <img src="http://103.13.231.66:3001/uploads/'.$pdf_data["sign_1"].'" alt="Mountain" width="50" height="40"> ผู้ใช้ไฟฟ้า</p>
+<td style="width: 50%; text-align: center;">
+<p>&nbsp;</p>
+<p>ลงชื่อ ................................ ผู้ตรวจสอบ</p>
 </td>
+</tr>
+<tr>
 <td style="width: 50%; text-align: center;">
-<p>ลงชื่อ................................... ผู้ตรวจสอบ</p>
-<p>( '.$pdf_data["full_name"].' </u> )  </p>
-<p>'.$pdf_data["DepartmentShortName"].''.$pdf_data["Peaname"].' </p>
+<p>( '.$sign_cus.' </u> )</p>
+<p>.</p>
+<td style="width: 50%; text-align: center;">
+<p>( '.$pdf_data["full_name"].' </u> )</p>
+<p>'.$pdf_data["DepartmentShortName"].''.$pdf_data["Peaname"].'</p>
 </td>
 </tr>
 </tbody>
@@ -220,7 +230,6 @@ u.dotted {
 
 
 </div>
-
 ';
 $mpdf->WriteHTML($head);
 $mpdf->defaultfooterline = 0;

@@ -64,7 +64,14 @@ function DateThai($strDate)
     $sign_cus = $pdf_data["name"];
     $img_sign = '<img src="http://103.13.231.66:3001/uploads/'.$pdf_data["sign_1"].'" alt="Mountain" width="50" height="40">';
   }
-
+//คำนวณการจับรอบ
+$mt_rev_spec = $pdf_data["MT_REV_SPEC"];
+$mt_rev_spec_con = intval(preg_replace('/[^0-9]+/', '', $mt_rev_spec), 10);
+$insp_round = $pdf_data["INSP_ROUND"];
+$INSP_TIME = $pdf_data["INSP_TIME"];
+$E_P_A = $pdf_data["E_P_A"];
+$energy1 = (1000/$mt_rev_spec_con)*$insp_round;
+$energy2 = $E_P_A/3600;
 //ob_start(); // Start get HTML code
 $head = '
 <link href="https://fonts.googleapis.com/css?family=Sarabun&;display=swap" rel="stylesheet">
@@ -186,7 +193,9 @@ u.dotted {
 <p class="subhead">ค่าที่ได้จากการคำนวณ</p>
 
 
-<p class="subhead1">3. ค่า % Error         = <u class="dotted">'.$pdf_data["ERR_MT_A"].'</u> %</p>
+<p class="subhead1">1. จากการจับรอบ         = <u class="dotted">'.number_format($energy1,2).'</u> K.W.</p>
+<p class="subhead1">2. จากการวัด         = <u class="dotted">'.number_format($energy2,2).'</u> K.W.</p>
+<p class="subhead1">3. ค่า % Error         = <u class="dotted">'.number_format($pdf_data["ERR_MT_A"],2).'</u> %</p>
 <hr>
 </div>
 
@@ -212,7 +221,7 @@ u.dotted {
 <p>ลงชื่อ '.$img_sign.' ผู้ใช้ไฟฟ้า</p>
 <td style="width: 50%; text-align: center;">
 <p>&nbsp;</p>
-<p>ลงชื่อ ................................ ผู้ตรวจสอบ</p>
+<p>ลงชื่อ ........................................ ผู้ตรวจสอบ</p>
 </td>
 </tr>
 <tr>

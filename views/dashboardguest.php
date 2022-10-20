@@ -829,6 +829,8 @@ $('#selectPea').on('change', function() {
 
     $('myPieChartMeterError1').hide();
 
+    $("#chart2").load(window.location.href + " #chart2");
+
     $.ajax({
         type: "POST",
         url: "http://103.13.231.66:3001/appMapping/count",
@@ -949,7 +951,6 @@ $('#selectPea').on('change', function() {
         (Chart.defaults.global.defaultFontFamily = "Nunito"),
         '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
         Chart.defaults.global.defaultFontColor = "#858796";
-
         // Pie Chart Example
         var ctx = document.getElementById("myPieChartMeterError2");
         var myPieChart = new Chart(ctx, {

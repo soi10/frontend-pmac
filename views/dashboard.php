@@ -323,6 +323,7 @@ include "topbarlogout.php"
                                             <th class="text-center">NAME</th>
                                             <th class="text-center">PER_ERR</th>
                                             <th class="text-center">RESULT_MT</th>
+                                            <th class="text-center">PIC_MT</th>
                                             <th class="text-center">Date</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -517,7 +518,7 @@ $(".click_show").click(function(event) {
     var table = $('#dataTable').DataTable({
         "responsive": true,
         "order": [
-            [4, "desc"]
+            [6, "desc"]
         ],
         dom: 'Bfrtip',
         buttons: [
@@ -567,6 +568,14 @@ $(".click_show").click(function(event) {
                         default:
                             return '<h3><span class="badge badge-danger">Unknown</span></h3>'
                     }
+                },
+                "className": "text-center",
+            },
+            {
+                "data": null,
+                'render': function(data) {
+                    return '<a href="http://103.13.231.66:3001/uploads/' + data.img_meter +
+                        '" target="_blank"><i class="fas fa-fw fa-tachometer-alt"></i></a>'
                 },
                 "className": "text-center",
             },

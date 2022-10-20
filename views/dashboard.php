@@ -555,18 +555,18 @@ $(".click_show").click(function(event) {
                 "render": function(data) {
                     switch (data.RESULT_MT) {
                         case "NORMAL":
-                            return '<h3><span class="badge badge-success">NORMAL</span></h3>'
+                            return '<span class="badge badge-success">NORMAL</span>'
                             break;
                         case "SLOW":
                             // code block
-                            return '<h3><span class="badge badge-danger">SLOW</span></h3>'
+                            return '<span class="badge badge-danger">SLOW</span>'
                             break;
                         case "FAST":
                             // code block
-                            return '<h3><span class="badge badge-danger">FAST</span></h3>'
+                            return '<span class="badge badge-danger">FAST</span>'
                             break;
                         default:
-                            return '<h3><span class="badge badge-danger">Unknown</span></h3>'
+                            return '<span class="badge badge-danger">Unknown</span>'
                     }
                 },
                 "className": "text-center",

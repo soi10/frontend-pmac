@@ -10863,7 +10863,7 @@ a:focus {
 .bg-login-image {
   background: url("../img/pic3.png");
   background-position: center;
-  background-size: cover;
+  background-size: 400px;
 }
 
 .bg-register-image {

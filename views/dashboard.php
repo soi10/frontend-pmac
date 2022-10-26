@@ -317,15 +317,29 @@ include "topbarlogout.php"
                             <div class="container-fluid">
                                 <table id="dataTable" class="table table-bordered mt-5" style="width:95%">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">CA</th>
+                                        <tr id="trtable">
+                                            <!-- <th class="text-center">CA</th>
                                             <th class="text-center">PEA NO.</th>
                                             <th class="text-center">NAME</th>
                                             <th class="text-center">PER_ERR</th>
                                             <th class="text-center">RESULT_MT</th>
                                             <th class="text-center">PIC_MT</th>
                                             <th class="text-center">Date</th>
-                                            <th class="text-center">Action</th>
+                                            <th class="text-center">Action</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table id="dataTable2" class="table table-bordered mt-5" style="width:95%">
+                                    <thead>
+                                        <tr id="trtable2">
+                                            <!-- <th class="text-center">CA</th>
+                                            <th class="text-center">PEA NO.</th>
+                                            <th class="text-center">NAME</th>
+                                            <th class="text-center">PER_ERR</th>
+                                            <th class="text-center">RESULT_MT</th>
+                                            <th class="text-center">PIC_MT</th>
+                                            <th class="text-center">Date</th>
+                                            <th class="text-center">Action</th> -->
                                         </tr>
                                     </thead>
                                 </table>
@@ -509,179 +523,401 @@ $(document).ready(function() {
 $(".click_show").click(function(event) {
     event.preventDefault();
 
-    var table1 = $('#dataTable').DataTable().columns.adjust();
-    table1.destroy();
+    var dataClick = $(this).val();
 
-    $('#modelshow').modal('toggle');
+    if ($(this).val() === "5") {
 
 
-    var table = $('#dataTable').DataTable({
-        "responsive": true,
-        "order": [
-            [6, "desc"]
-        ],
-        dom: 'Bfrtip',
-        buttons: [
-            'excel',
-        ],
-        "ajax": {
-            "url": "http://103.13.231.66:3001/appMapping/finddatamappingdetail",
-            "type": "POST",
-            "data": {
-                mruname: $('#mruname').val(),
-                apptype: $(this).val(),
+        $('#modelshow').modal('toggle');
+
+        // $("#trtable").load(window.location.href + " #trtable");
+
+        $('#dataTable_wrapper').show();
+        $('#dataTable2_wrapper').hide();
+
+
+
+        $("#trtable").append(
+            '<th class="text-center">CA</th><th class="text-center">PEA NO.</th><th class="text-center">NAME</th><th class="text-center">Phase</th><th class="text-center">CT_SIZE</th><th class="text-center">Ratio</th><th class="text-center">Ip</th><th class="text-center">IP/Ratio</th><th class="text-center">Is</th><th class="text-center">%Error</th><th class="text-center">RESULT</th><th class="text-center">PIC</th><th class="text-center">Date</th>'
+        );
+
+        var table1 = $('#dataTable').DataTable().columns.adjust();
+        table1.destroy();
+
+        // $('#dataTable').DataTable().ajax.reload();
+
+        var table = $('#dataTable').DataTable({
+            "responsive": true,
+            "order": [
+                [12, "desc"]
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                'excel',
+            ],
+            "ajax": {
+                "url": "http://103.13.231.66:3001/appMapping/finddatamappingdetail",
+                "type": "POST",
+                "data": {
+                    mruname: $('#mruname').val(),
+                    apptype: dataClick,
+                },
+                "dataSrc": ''
             },
-            "dataSrc": ''
-        },
-        "columns": [{
-                "data": "ca",
-                "className": "text-center",
-            },
-            {
-                "data": "peano",
-                "className": "text-center",
-            },
-            {
-                "data": "name",
-                "className": "text-center",
-            },
-            {
-                "data": "ERR_MT_A",
-                "className": "text-center",
-            },
-            {
-                "data": "RESULT_MT",
-                "data": null,
-                "render": function(data) {
-                    switch (data.RESULT_MT) {
-                        case "NORMAL":
-                            return '<span class="badge badge-success">NORMAL</span>'
-                            break;
-                        case "SLOW":
-                            // code block
-                            return '<span class="badge badge-danger">SLOW</span>'
-                            break;
-                        case "FAST":
-                            // code block
-                            return '<span class="badge badge-danger">FAST</span>'
-                            break;
-                        default:
-                            return '<span class="badge badge-danger">Unknown</span>'
+            "columns": [{
+                    "data": "ca",
+                    "className": "text-center",
+                },
+                {
+                    "data": "peano",
+                    "className": "text-center",
+                },
+                {
+                    "data": "name",
+                    "className": "text-center",
+                },
+                {
+                    "data": "MONITOR_CT1",
+                    "className": "text-center",
+                },
+                {
+                    "data": "CT_SIZE",
+                    "className": "text-center",
+                },
+                {
+                    "data": "CT_RATIO",
+                    "className": "text-center",
+                },
+                {
+                    "data": "I_B",
+                    "className": "text-center",
+                },
+                {
+                    "data": "MONITOR_CT2",
+                    "className": "text-center",
+                },
+                {
+                    "data": "I_A",
+                    "className": "text-center",
+                },
+                {
+                    "data": "ERR_MT_A",
+                    "className": "text-center",
+                },
+                {
+                    "data": "RESULT_MT",
+                    "data": null,
+                    "render": function(data) {
+                        switch (data.RESULT_MT) {
+                            case "NORMAL":
+                                return '<span class="badge badge-success">NORMAL</span>'
+                                break;
+                            case "SLOW":
+                                // code block
+                                return '<span class="badge badge-danger">SLOW</span>'
+                                break;
+                            case "FAST":
+                                // code block
+                                return '<span class="badge badge-danger">FAST</span>'
+                                break;
+                            default:
+                                return '<span class="badge badge-danger">Unknown</span>'
+                        }
+                    },
+                    "className": "text-center",
+                },
+                {
+                    "data": null,
+                    'render': function(data) {
+                        return '<a href="http://103.13.231.66:3001/uploads/' + data
+                            .img_meter +
+                            '" target="_blank"><i class="fas fa-fw fa-tachometer-alt"></i></a>'
+                    },
+                    "className": "text-center",
+                },
+                {
+                    "data": null,
+                    'render': function(data) {
+                        var time_s = new Date(data.createdAt).toLocaleDateString(
+                            'th-TH', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                // weekday: 'long',
+                            });
+
+                        return time_s;
+
+                    },
+                    "className": "text-center",
+                },
+            ]
+        }).columns.adjust();
+
+        $(document).on('click', '.pdfButton', function(e) {
+            // your function here
+            // e.preventDefault();
+            var btval = $(this).val();
+            var btid = $(this).attr('id');
+
+            switch (btid) {
+                case "1":
+                    window.open('../genpdf-pmac/singlephase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
                     }
+                    break;
+                case "2":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "3":
+                    // code block
+                    window.open('../genpdf-pmac/singlephase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "4":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "5":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "6":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+            }
+        });
+
+
+    } else {
+
+
+        $('#modelshow').modal('toggle');
+
+        // $("#trtable").load(window.location.href + " #trtable");
+
+        $('#dataTable_wrapper').hide();
+        $('#dataTable2_wrapper').show();
+
+        $("#trtable2").append(
+            '<th class="text-center">CA</th><th class="text-center">PEA NO.</th><th class="text-center">NAME</th><th class="text-center">PER_ERR</th><th class="text-center">RESULT_MT</th><th class="text-center">PIC_MT</th><th class="text-center">Date</th><th class="text-center">Action</th>'
+        );
+
+
+        var table2 = $('#dataTable2').DataTable().columns.adjust();
+        table2.destroy();
+
+        var table = $('#dataTable2').DataTable({
+            "responsive": true,
+            "order": [
+                [6, "desc"]
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                'excel',
+            ],
+            "ajax": {
+                "url": "http://103.13.231.66:3001/appMapping/finddatamappingdetail",
+                "type": "POST",
+                "data": {
+                    mruname: $('#mruname').val(),
+                    apptype: dataClick,
                 },
-                "className": "text-center",
+                "dataSrc": ''
             },
-            {
-                "data": null,
-                'render': function(data) {
-                    return '<a href="http://103.13.231.66:3001/uploads/' + data.img_meter +
-                        '" target="_blank"><i class="fas fa-fw fa-tachometer-alt"></i></a>'
+            "columns": [{
+                    "data": "ca",
+                    "className": "text-center",
                 },
-                "className": "text-center",
-            },
-            {
-                "data": null,
-                'render': function(data) {
-                    var time_s = new Date(data.createdAt).toLocaleDateString(
-                        'th-TH', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                            // weekday: 'long',
-                        });
-
-                    return time_s;
-
+                {
+                    "data": "peano",
+                    "className": "text-center",
                 },
-                "className": "text-center",
-            },
-            {
-                "data": null,
-                'render': function(data) {
-                    return '<button id="' + data.apptype +
-                        '" class="pdfButton btn btn-danger" value="' +
-                        data.id +
-                        '"><i class="fa fa-file"> PDF </i></button>'
+                {
+                    "data": "name",
+                    "className": "text-center",
                 },
-                "className": "text-center",
-            },
-        ]
-    }).columns.adjust();
+                {
+                    "data": "ERR_MT_A",
+                    "className": "text-center",
+                },
+                {
+                    "data": "RESULT_MT",
+                    "data": null,
+                    "render": function(data) {
+                        switch (data.RESULT_MT) {
+                            case "NORMAL":
+                                return '<span class="badge badge-success">NORMAL</span>'
+                                break;
+                            case "SLOW":
+                                // code block
+                                return '<span class="badge badge-danger">SLOW</span>'
+                                break;
+                            case "FAST":
+                                // code block
+                                return '<span class="badge badge-danger">FAST</span>'
+                                break;
+                            default:
+                                return '<span class="badge badge-danger">Unknown</span>'
+                        }
+                    },
+                    "className": "text-center",
+                },
+                {
+                    "data": null,
+                    'render': function(data) {
+                        return '<a href="http://103.13.231.66:3001/uploads/' + data
+                            .img_meter +
+                            '" target="_blank"><i class="fas fa-fw fa-tachometer-alt"></i></a>'
+                    },
+                    "className": "text-center",
+                },
+                {
+                    "data": null,
+                    'render': function(data) {
+                        var time_s = new Date(data.createdAt).toLocaleDateString(
+                            'th-TH', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                // weekday: 'long',
+                            });
+
+                        return time_s;
+
+                    },
+                    "className": "text-center",
+                },
+                {
+                    "data": null,
+                    'render': function(data) {
+                        return '<button id="' + data.apptype +
+                            '" class="pdfButton btn btn-danger" value="' +
+                            data.id +
+                            '"><i class="fa fa-file"> PDF </i></button>'
+                    },
+                    "className": "text-center",
+                },
+            ]
+        }).columns.adjust();
 
 
-    $(document).on('click', '.pdfButton', function(e) {
-        // your function here
-        // e.preventDefault();
-        var btval = $(this).val();
-        var btid = $(this).attr('id');
+        $(document).on('click', '.pdfButton', function(e) {
+            // your function here
+            // e.preventDefault();
+            var btval = $(this).val();
+            var btid = $(this).attr('id');
 
-        switch (btid) {
-            case "1":
-                window.open('../genpdf-pmac/singlephase.php?id=' + btval);
-                if (win) {
-                    //Browser has allowed it to be opened
-                    win.focus();
-                } else {
-                    //Browser has blocked it
-                    alert('Please allow popups for this website');
-                }
-                break;
-            case "2":
-                // code block
-                window.open('../genpdf-pmac/3phase.php?id=' + btval);
-                if (win) {
-                    //Browser has allowed it to be opened
-                    win.focus();
-                } else {
-                    //Browser has blocked it
-                    alert('Please allow popups for this website');
-                }
-                break;
-            case "3":
-                // code block
-                window.open('../genpdf-pmac/singlephase.php?id=' + btval);
-                if (win) {
-                    //Browser has allowed it to be opened
-                    win.focus();
-                } else {
-                    //Browser has blocked it
-                    alert('Please allow popups for this website');
-                }
-                break;
-            case "4":
-                // code block
-                window.open('../genpdf-pmac/3phase.php?id=' + btval);
-                if (win) {
-                    //Browser has allowed it to be opened
-                    win.focus();
-                } else {
-                    //Browser has blocked it
-                    alert('Please allow popups for this website');
-                }
-                break;
-            case "5":
-                // code block
-                window.open('../genpdf-pmac/3phase.php?id=' + btval);
-                if (win) {
-                    //Browser has allowed it to be opened
-                    win.focus();
-                } else {
-                    //Browser has blocked it
-                    alert('Please allow popups for this website');
-                }
-                break;
-            case "6":
-                // code block
-                window.open('../genpdf-pmac/3phase.php?id=' + btval);
-                if (win) {
-                    //Browser has allowed it to be opened
-                    win.focus();
-                } else {
-                    //Browser has blocked it
-                    alert('Please allow popups for this website');
-                }
-                break;
-        }
-    });
+            switch (btid) {
+                case "1":
+                    window.open('../genpdf-pmac/singlephase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "2":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "3":
+                    // code block
+                    window.open('../genpdf-pmac/singlephase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "4":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "5":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+                case "6":
+                    // code block
+                    window.open('../genpdf-pmac/3phase.php?id=' + btval);
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                    break;
+            }
+        });
+    }
+
 });
 </script>

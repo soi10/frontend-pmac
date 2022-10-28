@@ -821,6 +821,9 @@ $(".click_show").click(function(event) {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                second: 'numeric',
                                 // weekday: 'long',
                             });
 

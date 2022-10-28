@@ -62,7 +62,7 @@ if ($pdf_data["sign_1"] == 0) {
     $img_sign = '<img src="http://103.13.231.66:3001/uploads/nosign.png" alt="Mountain" width="50" height="40">';
 } else {
     $sign_cus = $pdf_data["name"];
-    $img_sign = '<img src="http://103.13.231.66:3001/uploads/' . $pdf_data["sign_1"] . '" alt="Mountain" width="70" height="50">';
+    $img_sign = '<img src="http://103.13.231.66:3001/uploads/' . $pdf_data["sign_1"] . '" alt="Mountain" width="75" height="40">';
 }
 //คำนวณการจับรอบ
 $mt_rev_spec = $pdf_data["MT_REV_SPEC"];

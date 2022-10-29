@@ -57,7 +57,7 @@ $date_time = date("Y-m-d H:i:s", strtotime($pdf_data["createdAt"]));
 $date_result = substr(DateThai($date_time), 0, 16);
 $time_result = substr(DateThai($date_time), 17, 20);
 
-if ($pdf_data["sign_1"] == 0) {
+if ($pdf_data["sign_1"] == "0") {
     $sign_cus = "ผู้ใช้ไฟไม่อยู่ขณะตรวจสอบ";
     $img_sign = '<img src="http://103.13.231.66:3001/uploads/nosign.png" alt="Mountain" width="50" height="40">';
 } else {

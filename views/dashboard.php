@@ -750,6 +750,7 @@ $(".click_show").click(function(event) {
 
         var table = $('#dataTable2').DataTable({
             "responsive": true,
+            "scrollX": true,
             "order": [
                 [6, "desc"]
             ],

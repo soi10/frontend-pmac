@@ -381,7 +381,7 @@ $(document).ready(function() {
     );
     dropdownPea.prop("selectedIndex", 0);
 
-    const urlPea = "http://103.13.231.66:3001/peatomruname/getname";
+    const urlPea = "http://pmac.pea.co.th:443/peatomruname/getname";
 
     $.getJSON(urlPea, function(data) {
         $.each(data, function(key, entry) {
@@ -402,7 +402,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: "POST",
-        url: "http://103.13.231.66:3001/appMapping/count",
+        url: "http://pmac.pea.co.th:443/appMapping/count",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -424,7 +424,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror1",
+            url: "http://pmac.pea.co.th:443/appMapping/countmetererror1",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -445,7 +445,7 @@ $(document).ready(function() {
     setTimeout(function() {
         $.ajax({
             type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror2",
+            url: "http://pmac.pea.co.th:443/appMapping/countmetererror2",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -466,7 +466,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror3",
+            url: "http://pmac.pea.co.th:443/appMapping/countmetererror3",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -485,7 +485,7 @@ $(document).ready(function() {
     setTimeout(function() {
         $.ajax({
             type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror4",
+            url: "http://pmac.pea.co.th:443/appMapping/countmetererror4",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -504,7 +504,7 @@ $(document).ready(function() {
     setTimeout(function() {
         $.ajax({
             type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror5",
+            url: "http://pmac.pea.co.th:443/appMapping/countmetererror5",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -579,7 +579,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "GET",
-            url: "http://103.13.231.66:3001/appMapping/countpeause",
+            url: "http://pmac.pea.co.th:443/appMapping/countpeause",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -722,118 +722,9 @@ $('#selectPea').on('change', function() {
     $('#chart2').show();
 
 
-        $.ajax({
-            type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/count",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                mruname: selectPea,
-            }),
-            success: function(result) {
-                $('#count1').text(result[0].A);
-                $('#count2').text(result[0].B);
-                $('#count3').text(result[0].C);
-                $('#count4').text(result[0].D);
-                $('#count5').text(result[0].E);
-                $('#count6').text(result[0].F);
-                $('#count7').text(result[0].G);
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror1",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                mruname: selectPea,
-            }),
-            success: function(result1) {
-                var Err1 = result1[0].A + result1[0].C
-                $('#countErr1').text(Err1);
-                var ErrPer1 = result1[0].A + result1[0].B + result1[0].C
-                var ErrAws2 = ((Err1 / ErrPer1) * 100) || 0;
-                $('#countPreErr1').text(parseFloat(ErrAws2).toFixed(2));
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror2",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                mruname: selectPea,
-            }),
-            success: function(result2) {
-                // console.log(result2);
-                var Err2 = result2[0].A + result2[0].C
-                $('#countErr2').text(Err2);
-                var ErrPer2 = result2[0].A + result2[0].B + result2[0].C
-                var ErrAws2 = ((Err2 / ErrPer2) * 100) || 0;
-                $('#countPreErr2').text(parseFloat(ErrAws2).toFixed(2));
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror3",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                mruname: selectPea,
-            }),
-            success: function(result) {
-                var Err3 = result[0].A + result[0].C
-                $('#countErr3').text(Err3);
-                var ErrPer3 = result[0].A + result[0].B + result[0].C
-                var ErrAws3 = ((Err3 / ErrPer3) * 100) || 0;
-                $('#countPreErr3').text(parseFloat(ErrAws3).toFixed(2));
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror4",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                mruname: selectPea,
-            }),
-            success: function(result) {
-                var Err4 = result[0].A + result[0].C
-                $('#countErr4').text(Err4);
-                var ErrPer4 = result[0].A + result[0].B + result[0].C
-                var ErrAws4 = ((Err4 / ErrPer4) * 100) || 0;
-                $('#countPreErr4').text(parseFloat(ErrAws4).toFixed(2));
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "http://103.13.231.66:3001/appMapping/countmetererror5",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                mruname: selectPea,
-            }),
-            success: function(result) {
-                var Err5 = result[0].A + result[0].C
-                $('#countErr5').text(Err5);
-                var ErrPer5 = result[0].A + result[0].B + result[0].C
-                var ErrAws5 = ((Err5 / ErrPer5) * 100) || 0;
-                $('#countPreErr5').text(parseFloat(ErrAws5).toFixed(2));
-            }
-        });
-
-    $('myPieChartMeterError1').hide();
-
-    $("#chart2").load(window.location.href + " #chart2");
-
     $.ajax({
         type: "POST",
-        url: "http://103.13.231.66:3001/appMapping/count",
+        url: "http://pmac.pea.co.th:443/appMapping/count",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -852,7 +743,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://103.13.231.66:3001/appMapping/countmetererror1",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror1",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -869,7 +760,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://103.13.231.66:3001/appMapping/countmetererror2",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror2",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -887,7 +778,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://103.13.231.66:3001/appMapping/countmetererror3",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror3",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -904,7 +795,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://103.13.231.66:3001/appMapping/countmetererror4",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror4",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -921,7 +812,116 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://103.13.231.66:3001/appMapping/countmetererror5",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror5",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            var Err5 = result[0].A + result[0].C
+            $('#countErr5').text(Err5);
+            var ErrPer5 = result[0].A + result[0].B + result[0].C
+            var ErrAws5 = ((Err5 / ErrPer5) * 100) || 0;
+            $('#countPreErr5').text(parseFloat(ErrAws5).toFixed(2));
+        }
+    });
+
+    $('myPieChartMeterError1').hide();
+
+    $("#chart2").load(window.location.href + " #chart2");
+
+    $.ajax({
+        type: "POST",
+        url: "http://pmac.pea.co.th:443/appMapping/count",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            $('#count1').text(result[0].A);
+            $('#count2').text(result[0].B);
+            $('#count3').text(result[0].C);
+            $('#count4').text(result[0].D);
+            $('#count5').text(result[0].E);
+            $('#count6').text(result[0].F);
+            $('#count7').text(result[0].G);
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror1",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result1) {
+            var Err1 = result1[0].A + result1[0].C
+            $('#countErr1').text(Err1);
+            var ErrPer1 = result1[0].A + result1[0].B + result1[0].C
+            var ErrAws2 = ((Err1 / ErrPer1) * 100) || 0;
+            $('#countPreErr1').text(parseFloat(ErrAws2).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror2",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result2) {
+            // console.log(result2);
+            var Err2 = result2[0].A + result2[0].C
+            $('#countErr2').text(Err2);
+            var ErrPer2 = result2[0].A + result2[0].B + result2[0].C
+            var ErrAws2 = ((Err2 / ErrPer2) * 100) || 0;
+            $('#countPreErr2').text(parseFloat(ErrAws2).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror3",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            var Err3 = result[0].A + result[0].C
+            $('#countErr3').text(Err3);
+            var ErrPer3 = result[0].A + result[0].B + result[0].C
+            var ErrAws3 = ((Err3 / ErrPer3) * 100) || 0;
+            $('#countPreErr3').text(parseFloat(ErrAws3).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror4",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            mruname: selectPea,
+        }),
+        success: function(result) {
+            var Err4 = result[0].A + result[0].C
+            $('#countErr4').text(Err4);
+            var ErrPer4 = result[0].A + result[0].B + result[0].C
+            var ErrAws4 = ((Err4 / ErrPer4) * 100) || 0;
+            $('#countPreErr4').text(parseFloat(ErrAws4).toFixed(2));
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "http://pmac.pea.co.th:443/appMapping/countmetererror5",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({

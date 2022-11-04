@@ -376,7 +376,7 @@ $(document).ready(function() {
     } else {
         $.ajax({
             type: "POST",
-            url: "http://103.13.231.66:3001/peatomruname/",
+            url: "http://pmac.pea.co.th:443/peatomruname/",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -387,7 +387,7 @@ $(document).ready(function() {
                 $('#mruname').val(mruname);
                 $.ajax({
                     type: "POST",
-                    url: "http://103.13.231.66:3001/appMapping/count",
+                    url: "http://pmac.pea.co.th:443/appMapping/count",
                     contentType: "application/json",
                     dataType: "json",
                     data: JSON.stringify({
@@ -409,7 +409,7 @@ $(document).ready(function() {
 
                     $.ajax({
                         type: "POST",
-                        url: "http://103.13.231.66:3001/appMapping/countmetererror1",
+                        url: "http://pmac.pea.co.th:443/appMapping/countmetererror1",
                         contentType: "application/json",
                         dataType: "json",
                         data: JSON.stringify({
@@ -431,7 +431,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $.ajax({
                         type: "POST",
-                        url: "http://103.13.231.66:3001/appMapping/countmetererror2",
+                        url: "http://pmac.pea.co.th:443/appMapping/countmetererror2",
                         contentType: "application/json",
                         dataType: "json",
                         data: JSON.stringify({
@@ -454,7 +454,7 @@ $(document).ready(function() {
 
                     $.ajax({
                         type: "POST",
-                        url: "http://103.13.231.66:3001/appMapping/countmetererror3",
+                        url: "http://pmac.pea.co.th:443/appMapping/countmetererror3",
                         contentType: "application/json",
                         dataType: "json",
                         data: JSON.stringify({
@@ -475,7 +475,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $.ajax({
                         type: "POST",
-                        url: "http://103.13.231.66:3001/appMapping/countmetererror4",
+                        url: "http://pmac.pea.co.th:443/appMapping/countmetererror4",
                         contentType: "application/json",
                         dataType: "json",
                         data: JSON.stringify({
@@ -497,7 +497,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $.ajax({
                         type: "POST",
-                        url: "http://103.13.231.66:3001/appMapping/countmetererror5",
+                        url: "http://pmac.pea.co.th:443/appMapping/countmetererror5",
                         contentType: "application/json",
                         dataType: "json",
                         data: JSON.stringify({
@@ -556,7 +556,7 @@ $(".click_show").click(function(event) {
                 'excel',
             ],
             "ajax": {
-                "url": "http://103.13.231.66:3001/appMapping/finddatamappingdetail",
+                "url": "http://pmac.pea.co.th:443/appMapping/finddatamappingdetail",
                 "type": "POST",
                 "data": {
                     mruname: $('#mruname').val(),
@@ -629,7 +629,7 @@ $(".click_show").click(function(event) {
                 {
                     "data": null,
                     'render': function(data) {
-                        return '<a href="http://103.13.231.66:3001/uploads/' + data
+                        return '<a href="http://pmac.pea.co.th:443/uploads/' + data
                             .img_meter +
                             '" target="_blank"><i class="fas fa-fw fa-tachometer-alt"></i></a>'
                     },
@@ -759,7 +759,7 @@ $(".click_show").click(function(event) {
                 'excel',
             ],
             "ajax": {
-                "url": "http://103.13.231.66:3001/appMapping/finddatamappingdetail",
+                "url": "http://pmac.pea.co.th:443/appMapping/finddatamappingdetail",
                 "type": "POST",
                 "data": {
                     mruname: $('#mruname').val(),
@@ -808,7 +808,7 @@ $(".click_show").click(function(event) {
                 {
                     "data": null,
                     'render': function(data) {
-                        return '<a href="http://103.13.231.66:3001/uploads/' + data
+                        return '<a href="/uploads/' + data
                             .img_meter +
                             '" target="_blank"><i class="fas fa-fw fa-tachometer-alt"></i></a>'
                     },

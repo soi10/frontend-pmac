@@ -21,7 +21,7 @@ $id = $_GET['id'];
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'http://103.13.231.66:3001/appMapping/dataid?id=' . $id . '',
+    CURLOPT_URL => 'http://103.253.73.187:8080/appMapping/dataid?id=' . $id . '',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -59,10 +59,10 @@ $time_result = substr(DateThai($date_time), 17, 20);
 
 if ($pdf_data["sign_1"] == "0") {
     $sign_cus = "ผู้ใช้ไฟไม่อยู่ขณะตรวจสอบ";
-    $img_sign = '<img src="http://103.13.231.66:3001/uploads/nosign.png" alt="Mountain" width="50" height="40">';
+    $img_sign = '<img src="http://103.253.73.187:8080/uploads/nosign.png" alt="Mountain" width="50" height="40">';
 } else {
     $sign_cus = $pdf_data["name"];
-    $img_sign = '<img src="http://103.13.231.66:3001/uploads/' . $pdf_data["sign_1"] . '" alt="Mountain" width="75" height="40">';
+    $img_sign = '<img src="http://103.253.73.187:8080/uploads/' . $pdf_data["sign_1"] . '" alt="Mountain" width="75" height="40">';
 }
 //คำนวณการจับรอบ
 $mt_rev_spec = $pdf_data["MT_REV_SPEC"];
@@ -172,7 +172,7 @@ u.dotted {
 <br>
 
 <div class="center">
-<p class="sub">ชื่อผู้ใช้ไฟ <u class="dotted">' . $pdf_data["name"] . '</u> หมายเลขผู้ใช้ไฟ <u class="dotted">' . $pdf_data["ca"] . '</u> การไฟฟ้า <u class="dotted">' . $pdf_data["Peaname"] . '</u></p>
+<p class="sub">ชื่อผู้ใช้ไฟ <u class="dotted">' . $pdf_data["name"] . '</u> หมายเลขผู้ใช้ไฟ <u class="dotted">' . $pdf_data["ca"] . '</u> การไฟฟ้า <u class="dotted">' . $pdf_data["mruname"] . '</u></p>
 <p class="sub">kWh-Meter ผลิตภัณฑ์ <u class="dotted">' . $pdf_data["producer"] . '</u> แบบ <u class="dotted">' . $pdf_data["phase"] . '</u> กระแส <u class="dotted">' . $pdf_data["amp"] . '</u> แอมป์</p>
 <p class="sub">แรงดัน <u class="dotted">' . $pdf_data["V_AN"] . '</u> ไวลท์ <u class="dotted">' . $pdf_data["MT_REV_SPEC"] . '</u> รอบ/กิโลวัตต์-ชั่วโมง PEA.NO <u class="dotted">' . (int) $pdf_data["peano"] . '</u></p>
 <p class="sub">ตราตระกั่วฝาครอบที่ต่อสาย..........................หมายเลข...................... ( ) ปกติ  ( ) ไม่ปกติ ( ) ไม่มี</p>

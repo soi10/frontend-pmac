@@ -381,7 +381,7 @@ $(document).ready(function() {
     );
     dropdownPea.prop("selectedIndex", 0);
 
-    const urlPea = "http://pmac.pea.co.th:443/peatomruname/getname";
+    const urlPea = "http://103.253.73.187:8080/peatomruname/getname";
 
     $.getJSON(urlPea, function(data) {
         $.each(data, function(key, entry) {
@@ -402,7 +402,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/count",
+        url: "http://103.253.73.187:8080/appMapping/count",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -424,7 +424,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "http://pmac.pea.co.th:443/appMapping/countmetererror1",
+            url: "http://103.253.73.187:8080/appMapping/countmetererror1",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -445,7 +445,7 @@ $(document).ready(function() {
     setTimeout(function() {
         $.ajax({
             type: "POST",
-            url: "http://pmac.pea.co.th:443/appMapping/countmetererror2",
+            url: "http://103.253.73.187:8080/appMapping/countmetererror2",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -466,7 +466,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "http://pmac.pea.co.th:443/appMapping/countmetererror3",
+            url: "http://103.253.73.187:8080/appMapping/countmetererror3",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -485,7 +485,7 @@ $(document).ready(function() {
     setTimeout(function() {
         $.ajax({
             type: "POST",
-            url: "http://pmac.pea.co.th:443/appMapping/countmetererror4",
+            url: "http://103.253.73.187:8080/appMapping/countmetererror4",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -504,7 +504,7 @@ $(document).ready(function() {
     setTimeout(function() {
         $.ajax({
             type: "POST",
-            url: "http://pmac.pea.co.th:443/appMapping/countmetererror5",
+            url: "http://103.253.73.187:8080/appMapping/countmetererror5",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -579,7 +579,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "GET",
-            url: "http://pmac.pea.co.th:443/appMapping/countpeause",
+            url: "http://103.253.73.187:8080/appMapping/countpeause",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
@@ -724,7 +724,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/count",
+        url: "http://103.253.73.187:8080/appMapping/count",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -743,7 +743,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror1",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror1",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -760,7 +760,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror2",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror2",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -778,7 +778,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror3",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror3",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -795,7 +795,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror4",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror4",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -812,7 +812,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror5",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror5",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -833,7 +833,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/count",
+        url: "http://103.253.73.187:8080/appMapping/count",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -852,7 +852,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror1",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror1",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -869,7 +869,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror2",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror2",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -887,7 +887,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror3",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror3",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -904,7 +904,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror4",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror4",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
@@ -921,7 +921,7 @@ $('#selectPea').on('change', function() {
 
     $.ajax({
         type: "POST",
-        url: "http://pmac.pea.co.th:443/appMapping/countmetererror5",
+        url: "http://103.253.73.187:8080/appMapping/countmetererror5",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
